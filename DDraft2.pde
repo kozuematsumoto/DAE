@@ -50,7 +50,7 @@ void setup() {
   cubeExist = false;
   breakExist = false;
 
-  num = 37;
+  num = 21;
 }
 
 void draw() {

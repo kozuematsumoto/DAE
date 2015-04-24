@@ -97,7 +97,7 @@ class Wave {
   // velocity used to be vel
   void separate (Wave w) {
     // This variable specifies how close is too close.
-    float desiredseparation = 6;
+    float desiredseparation = 11;
     PVector sum = new PVector();  //[bold]
     int count = 0; 
 

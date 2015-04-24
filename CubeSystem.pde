@@ -12,7 +12,6 @@ class CubeSystem {
       Cube c = iter.next();                              // retrieve next particle and return to temporary object
 //      println("c.isDead: " + c.isDead);
       if (c.isDead == true) {  
- //       c.soundType = 0;        // if our particle is dead remove it
         iter.remove();
       } else {
         c.update(i);        // if our particle is alive, update it

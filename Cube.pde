@@ -24,7 +24,7 @@ class Cube {
     println("freq: " + freq);
     changeColor();
     bounceNumber = 0;
-    maxBounceNumber = int(random(3, 6));
+    maxBounceNumber = int(random(4, 9));
     //    maxBounceNumber = 1;
     isDead = false;
     soundType = 0;
