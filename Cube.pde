@@ -12,15 +12,17 @@ class Cube {
   int soundType;
 
   float freq;
+  float string;
 
-  Cube(float m, float x, float y, float z, float f) {
-    mass = m;
+  Cube(float str, float x, float y, float z, float f) {
+    mass = str;
     //    size = random(17, 70); //"Do somewhat relate to Mass"????
-    size = (m*1.5)+15; //"Do somewhat relate to Mass"????
+    size = (str*1.5)+15; //"Do somewhat relate to Mass"????
     location = new PVector(x, y, z);
     velocity = new PVector(0, 0, 0);
     acceleration = new PVector(0, 0, 0);
     freq = f;
+    string = str;
     println("freq: " + freq);
     changeColor();
     bounceNumber = 0;

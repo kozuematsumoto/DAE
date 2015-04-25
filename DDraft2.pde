@@ -122,8 +122,11 @@ void draw() {
       if (cb.soundType == 1) {
       println("cb.soundTypeB: " + cb.soundType);
         // Send the loation info to ChucK to create sound based on the visual information
-        sendPos(cb.soundType, cb.freq);
-        //       println("cb.freq: " + cb.freq);
+///// Change on Apr. 25 \\\\\
+//        sendPos(cb.soundType, cb.freq);
+        sendPos(cb.soundType, cb.string);
+///// Till here \\\\\
+//       println("cb.freq: " + cb.freq);
       } else if (cb.soundType == 2) {
         PVector crushPoint = cb.getLocation();
         breaksystem.addParticles(int(random(5.8)), crushPoint);
@@ -147,15 +150,18 @@ void mousePressed() {
 }
 
 // OSC function to send position of ship
-void sendPos(int bounce, float freq) {
+///// Change on Apri. 25 \\\\\
+//void sendPos(int bounce, float freq) {
+void sendPos(int bounce, float str) {
   // create message with address
   OscMessage msg = new OscMessage("/cube/crush"); 
 
   // add data
   msg.add(bounce);   
-  msg.add(freq); 
+//  msg.add(freq); 
+  msg.add(str); 
   println("bounce: " + bounce);
-  println("freq: " + freq);
+  println("str: " + str);
 
   // send message to ChucK
   oscP5.send(msg, myRemoteLocation);

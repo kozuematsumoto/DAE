@@ -47,8 +47,8 @@ class CubeSystem {
   }
   //called to add new particles
   // Connect with chuck!!!
-  void addParticles(float m, float x, float y, float z, float f) {
-    cubeCollection.add( new Cube(m, x, y, z, f));
+  void addParticles(float str, float x, float y, float z, float f) {
+    cubeCollection.add( new Cube(str, x, y, z, f));
   }
 }
 
