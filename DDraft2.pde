@@ -9,12 +9,16 @@ NetAddress myRemoteLocation;
 
 boolean cubeExist;
 boolean breakExist;
+boolean lineExist;
+
 int num;
 
 BreakSystem breaksystem;
 CubeSystem cubesystem;
 FlowSystem flowsystem;
 WaveSystem wavesystem;
+LineSystem linesystem;
+
 
 float string;
 float freq;
@@ -33,7 +37,7 @@ void oscEvent(OscMessage msg) {
 }
 void setup() {
   size(1250, 750, P3D);
-//  size(displayWidth, displayHeight, P3D);
+  //  size(displayWidth, displayHeight, P3D);
   frameRate(37);
   smooth();
   noStroke();                              
@@ -47,16 +51,18 @@ void setup() {
   breaksystem = new BreakSystem();
   flowsystem = new FlowSystem();
   wavesystem = new WaveSystem();
+  linesystem = new LineSystem();
 
   cubeExist = false;
   breakExist = false;
+  lineExist = false;  
 
   num = 21;
 }
 
 void draw() {
   //  background(225);
-//  background(196, 246, 254, 20);
+  //  background(196, 246, 254, 20);
   background(0);
 
   if (breakExist) {
@@ -91,7 +97,7 @@ void draw() {
   }
 
   if (cubeExist) {
-      cubesystem.update();
+    cubesystem.update();
     for (int i=0; i < cubesystem.cubeCollection.size (); i++) {
       Cube cb = cubesystem.cubeCollection.get(i);  //"DOES THIS WORK HERE???"
 
@@ -115,18 +121,18 @@ void draw() {
 
       //      println("iB: " + i);
 
-//      cubesystem.update();
+      //      cubesystem.update();
       //      println("i: " + i);
 
       println("cb.soundTypeA: " + cb.soundType);
       if (cb.soundType == 1) {
-      println("cb.soundTypeB: " + cb.soundType);
+        println("cb.soundTypeB: " + cb.soundType);
         // Send the loation info to ChucK to create sound based on the visual information
-///// Change on Apr. 25 \\\\\
-//        sendPos(cb.soundType, cb.freq);
+        ///// Change on Apr. 25 \\\\\
+        //        sendPos(cb.soundType, cb.freq);
         sendPos(cb.soundType, cb.string);
-///// Till here \\\\\
-//       println("cb.freq: " + cb.freq);
+        ///// Till here \\\\\
+        //       println("cb.freq: " + cb.freq);
       } else if (cb.soundType == 2) {
         PVector crushPoint = cb.getLocation();
         breaksystem.addParticles(int(random(5.8)), crushPoint);
@@ -135,17 +141,30 @@ void draw() {
         breakExist = true;
       }
     }
-      cubesystem.display();
+    cubesystem.display();
   }
+
+  if (lineExist) {
+    linesystem.update();
+    linesystem.display();
+  }
+
 
   wavesystem.display();
   flowsystem.update();
 }
 
 void mousePressed() {
-  //    cubesystem.addParticles("SOMETHING FROM SOUND/VOLUME", width/2, height/4, 0);
-  //      cubesystem.addParticles(15, width/2, height/4, 0, 440.0);
-  //      cubeExist = true;
+  int side;
+  int s = int(random(0, 2));
+  if (s == 1) {
+    side = 0;
+  } else {
+    side = width;
+  }
+
+  linesystem.addParticles(new PVector (side, random (10, height-10)));
+  lineExist = true;
   println ("pressed");
 }
 
@@ -158,7 +177,7 @@ void sendPos(int bounce, float str) {
 
   // add data
   msg.add(bounce);   
-//  msg.add(freq); 
+  //  msg.add(freq); 
   msg.add(str); 
   println("bounce: " + bounce);
   println("str: " + str);

@@ -37,7 +37,7 @@ class Cube {
     location.add(velocity);
     acceleration.mult(0);
     soundType = bounce();
-    println("soundType; : "+ soundType );
+ //   println("soundType; : "+ soundType );
   }
 
   void display() {
