@@ -4,7 +4,6 @@ class Line {
   float lifespan;
   boolean isDead;
   
-  
   PVector velocity;
   PVector acceleration;
   float mass;
@@ -40,19 +39,5 @@ class Line {
 
   void display() {
   }
-
-
-//  PVector getLocation() {
-//    return location;
-//  }
-
-
-//  void changeColor() {
-//    r = random (0, 75);
-//    g = random (0, 100);
-//    //        b = random (0, 225);
-//    //      r = g = 0;
-//    b = 255;
-//  }
 }
 

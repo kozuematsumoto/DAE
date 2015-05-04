@@ -1,5 +1,5 @@
 class CubeSystem {
-  // Declare an ArrayList of Particles
+
   ArrayList<Cube> cubeCollection = new ArrayList<Cube>();
 
   CubeSystem() {
@@ -21,11 +21,11 @@ class CubeSystem {
   }
 
   void display() {
-    // again using an interator (instead of a for loop) to loop through our
-    // particle array list, and call each particles draw() function
+    fill(255);
+    text(cubeCollection.size(), 20, 40);
     Iterator<Cube> iter = cubeCollection.iterator();
     while (iter.hasNext ()) {
-      iter.next().display();                                             // since we are only calling draw on the particle, we don't need to store in temporary object
+      iter.next().display();
       // next() returns the next particle, so we can call draw directly on it.
     }
     //CUBE ANIMATION HERE
@@ -46,7 +46,6 @@ class CubeSystem {
     }
   }
   //called to add new particles
-  // Connect with chuck!!!
   void addParticles(float str, float x, float y, float z, float f) {
     cubeCollection.add( new Cube(str, x, y, z, f));
   }

@@ -29,9 +29,6 @@ class Flow {
     }
   }
 
-
-
-
   PVector lookup(PVector lookup) {
     int column = int(constrain(lookup.x/resolution, 0, cols-1));
     int row = int(constrain(lookup.y/resolution, 0, rows-1));

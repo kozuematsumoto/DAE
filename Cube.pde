@@ -23,11 +23,11 @@ class Cube {
     acceleration = new PVector(0, 0, 0);
     freq = f;
     string = str;
-    println("freq: " + freq);
+    //println("freq: " + freq);
     changeColor();
     bounceNumber = 0;
     maxBounceNumber = int(random(4, 9));
-    //    maxBounceNumber = 1;
+//        maxBounceNumber = 1;
     isDead = false;
     soundType = 0;
   }
@@ -48,8 +48,6 @@ class Cube {
     int boo= 0;
 
     if (location.x > width) { 
-      //     isDead = true;
-      //      boo = 0;
       velocity.x *= -1;
       location.x = width;
       changeColor();
@@ -74,7 +72,7 @@ class Cube {
         location.y = height;
         changeColor();
         boo = 1;
-        println("HERERERERER; : " );
+        //println("HERERERERER; : " );
         bounceNumber++;
       }
     }
@@ -93,8 +91,6 @@ class Cube {
   void changeColor() {
     r = random (0, 75);
     g = random (0, 100);
-    //        b = random (0, 225);
-    //      r = g = 0;
     b = 255;
   }
 }

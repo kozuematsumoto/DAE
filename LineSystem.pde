@@ -13,10 +13,9 @@ class LineSystem {
       Line l = iter.next();                              // retrieve next particle and return to temporary object
       if (l.isDead == true) {                                // if our particle is dead remove it
         iter.remove();
-        println("Removed! ");
+        //println("Removed! ");
       } else {
         l.update();      
-        // if our particle is alive, update it
       }
     }
   }
@@ -27,7 +26,6 @@ class LineSystem {
       iter.next().display();                                             // since we are only calling draw on the particle, we don't need to store in temporary object
     }
 
-    //"WAVE ANIMATION HERE!!!!"
     for (int i = 0; i < lineCollection.size (); i++) {
       // Get particle 
       Line l = lineCollection.get(i);
@@ -40,9 +38,8 @@ class LineSystem {
       line(l.startLoc.x, l.startLoc.y, l.endLoc.x, l.endLoc.y+10);
       line(l.startLoc.x, l.startLoc.y, l.endLoc.x, l.endLoc.y-10);
  
-      println("l.startLoc.x: "+ l.startLoc.x);
-      println("l.startLoc.y: "+ l.startLoc.y);
-
+      //println("l.startLoc.x: "+ l.startLoc.x);
+      //println("l.startLoc.y: "+ l.startLoc.y);
     }
     noStroke();
   }
