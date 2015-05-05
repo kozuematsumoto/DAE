@@ -22,6 +22,7 @@ LineSystem linesystem;
 
 float string;
 float freq;
+float kotoPitch;
 
 // native osc function      
 void oscEvent(OscMessage msg) {
@@ -31,14 +32,46 @@ void oscEvent(OscMessage msg) {
   if (msg.checkAddrPattern("/freq") == true) {
     freq = msg.get(0).floatValue();
   }
-  float w = random(2, 2);
-  cubesystem.addParticles(string, width/w, height/4, 0, freq);
-  cubeExist = true;
+  if (msg.checkAddrPattern("/kotoPitch") == true) {
+    kotoPitch = msg.get(0).floatValue();
+  }
+
+//  println(kotoPicth);
+  if (string >0 && freq >0 ) {
+    float w = random(2, 2);
+    cubesystem.addParticles(string, width/w, height/4, 0, freq);
+    cubeExist = true;
+  }
+
+  if (kotoPitch != 0) {
+    println (kotoPitch);
+    if (kotoPitch < 243 || kotoPitch > 244) {
+      int side;
+      int s = int(random(0, 2));
+
+      if (s == 1) {
+        side = 0;
+      } else {
+        side = width;
+      }
+
+      float mapped = map(kotoPitch, 150, 1000, 0, height);  
+      linesystem.addParticles(new PVector (side, mapped));
+
+
+ //     linesystem.addParticles(new PVector (side, mapped));
+      lineExist = true;
+      kotoPitch = 0;
+    }
+  }
 }
+
+
 void setup() {
-  size(1250, 750, P3D);
-//  size(1680, 1050, P3D);
-//    size(displayWidth, displayHeight, P3D);
+  size(1470, 918, P3D);
+//  size(1250, 750, P3D);
+  //  size(1680, 1050, P3D);
+ //     size(displayWidth, displayHeight, P3D);
   frameRate(37);
   smooth();
   noStroke();                              
@@ -75,7 +108,7 @@ void draw() {
       Flow f = flowCollection.get(j);
       WaveSet ws = iterw.next();      // retrieve next particle and return to temporary object
       ws.checkEdges();
-//println ("here dead?");
+      //println ("here dead?");
       if (ws.isDead == true) { 
         iterw.remove();
         //            println("Removed! ");
@@ -89,9 +122,9 @@ void draw() {
               wk.separate(wm);
             }
           }
-//          wk.follow(f);
+          //          wk.follow(f);
           wk.update(f);
-         }
+        }
       }
       i = i+num;
       j++;
@@ -151,19 +184,19 @@ void draw() {
   flowsystem.update();
 }
 
-void mousePressed() {
-  int side;
-  int s = int(random(0, 2));
-  if (s == 1) {
-    side = 0;
-  } else {
-    side = width;
-  }
-
-  linesystem.addParticles(new PVector (side, random (10, height-10)));
-  lineExist = true;
-//  println ("pressed");
-}
+//void mousePressed() {
+//  int side;
+//  int s = int(random(0, 2));
+//  if (s == 1) {
+//    side = 0;
+//  } else {
+//    side = width;
+//  }
+//
+//  linesystem.addParticles(new PVector (side, random (10, height-10)));
+//  lineExist = true;
+////  println ("pressed");
+//}
 
 ///// Change on Apri. 25 \\\\\
 //void sendPos(int bounce, float freq) {

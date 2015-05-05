@@ -19,7 +19,7 @@ class Line {
   Line(PVector info) {
     startLoc = info;
    endLoc =  new PVector(info.x, info.y);
-   lifespan = 100;
+   lifespan = 120;
    isDead = false;
    if (startLoc.x == 0) {
      velocity = new PVector (25, random(-10, 10));

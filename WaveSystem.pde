@@ -24,8 +24,8 @@ class WaveSystem {
     num = n;
       waveCollection.add(new WaveSet(breakPos, r, g, b, n));
 
-//    int resolution = int(random(21, 27));
-    int resolution = int(random(11, 27));
+    int resolution = int(random(21, 27));
+//    int resolution = int(random(11, 27));
 //    int resolution = int(random(13, 17));
     flowCollection.add( new Flow(resolution));
   }

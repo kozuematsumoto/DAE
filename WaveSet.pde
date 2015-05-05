@@ -32,7 +32,7 @@ class WaveSet {
           Wave w2 = waveSet[j];  
 
           // Check if the distance betwen these two particles are closer than 113. If so a line will be drawn between them          
-          if (w1.location.dist(w2.location) < 73) {            //87                
+          if (w1.location.dist(w2.location) < 107) {            //87                
             // Use map to scale distance to color value (0-113 to 0-255)  
             float mapped = map(w1.location.dist(w2.location), 0, 73, 0, 255);  
             stroke(w1.red, w1.green, w1.blue, 80);

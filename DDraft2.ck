@@ -5,6 +5,7 @@ HidMsg hmsg;
 // Sound from the sound file
 SndBuf myM1 => NRev revM1 => Pan2 panM1 => ADSR env => dac;
 SndBuf str_sound => NRev revM2 => Pan2 panM2 => ADSR env2 => dac;
+adc => PitchTrack pitch => blackhole; 
 
 // Set up envelops
 env.set(0.01 :: second, 0.002 :: second, 1, 0.01 :: second);
@@ -26,7 +27,7 @@ myM1.samples() => myM1.pos;
 
 
 ///////Added on Apr. 24\\\\\\\\\\
-"/PAudio/" => str_location;
+"PAudio/" => str_location;
 
 path + str_location => str_location;
 ///////Till here Apr. 24\\\\\\\\\\\\
@@ -100,7 +101,27 @@ fun void oscPoller() {
 }
 
 
+fun void kotoTrack() {
+	while (true) {
+		80::ms => now;
+		pitch.get() => float kotoPitch;
+//		<<< "kotoPitch: ", kotoPitch >>>;
+		if (kotoPitch > 150 && kotoPitch < 1200) {
+			oscOut("/kotoPitch", kotoPitch);
+//		oscOut("/kotoPitch", 0);
+		} else {
+			oscOut("/kotoPitch", 0);
+		}
+		0 => kotoPitch;
+		2.5::ms => now;
+//		oscOut("/kotoPitch", kotoPitch);
+
+	}
+}
+
+
 spork ~ oscPoller();
+spork ~ kotoTrack();
 
 int str_from_keyboard;
 float freq;
@@ -199,6 +220,8 @@ while( true ) {
             oscOut("/freq", freq);
 			
             0.1::second => now; 
+	        oscOut("/string", 0);
+            oscOut("/freq", 0);
 				
 		} else {
 			0.1:: second => now;
@@ -210,6 +233,7 @@ while( true ) {
 
 // Osc sending function
 fun void oscOut(string addr, float val) {
+//	<<<"val: " , val >>>;
     osc.start(addr);
     osc.add(val);
     osc.send();
@@ -297,8 +321,8 @@ fun void pitchDetection(float s) {
 //    return fn;
     
 	str_location + fn => str_filename;
-	<<< str_filename >>>;
-	<<< "fn: ", fn >>>;
+//	<<< str_filename >>>;
+//	<<< "fn: ", fn >>>;
 
     str_filename => str_sound.read;
     str_sound.samples() => str_sound.pos;

@@ -25,7 +25,7 @@ class Wave {
 
     // force; try varying these!
     maxspeed = 3;
-    maxforce = 0.18;
+    maxforce = 0.1;
     isDead = false;
   }
 
@@ -56,7 +56,7 @@ class Wave {
 
   void separate (Wave w) {
     // This variable specifies how close is too close.
-    float desiredseparation = 17;
+    float desiredseparation = 11;
     PVector sum = new PVector();  
     int count = 0; 
 
