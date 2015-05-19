@@ -11,7 +11,6 @@ class Flow {
     cols = width/resolution;
     rows = height/resolution;
     field = new PVector[cols][rows];
-//    init(int(random(0,5)));
     init();
     isDead = false;
   }

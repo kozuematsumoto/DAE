@@ -17,7 +17,7 @@ class Cube {
   Cube(float str, float x, float y, float z, float f) {
     mass = str;
     //    size = random(17, 70); //"Do somewhat relate to Mass"????
-    size = (str*1.5)+15; //"Do somewhat relate to Mass"????
+    size = (str*2)+20; //"Do somewhat relate to Mass"????
     location = new PVector(x, y, z);
     velocity = new PVector(0, 0, 0);
     acceleration = new PVector(0, 0, 0);
@@ -26,8 +26,8 @@ class Cube {
     //println("freq: " + freq);
     changeColor();
     bounceNumber = 0;
-    maxBounceNumber = int(random(4, 9));
-//        maxBounceNumber = 1;
+    maxBounceNumber = int(random(3, 13));
+    //        maxBounceNumber = 1;
     isDead = false;
     soundType = 0;
   }
@@ -37,12 +37,10 @@ class Cube {
     location.add(velocity);
     acceleration.mult(0);
     soundType = bounce();
- //   println("soundType; : "+ soundType );
   }
 
   void display() {
   }
-
 
   int bounce() {
     int boo= 0;
@@ -60,25 +58,20 @@ class Cube {
       boo = 1;
     }
     if (location.y > height) {
-      //        println("location.y: " + location.y);
-      //        println("bounceNumber: " + bounceNumber);
       if (bounceNumber== maxBounceNumber) {
         boo = 2;
         bounceNumber = 0;
-        //       println("bounceNumberB: " + bounceNumber);
         isDead = true;
       } else {
         velocity.y *= -1;
         location.y = height;
         changeColor();
         boo = 1;
-        //println("HERERERERER; : " );
         bounceNumber++;
       }
     }
     return boo;
   }
-
 
   PVector getLocation() {
     return location;
@@ -88,6 +81,7 @@ class Cube {
     PVector f = PVector.div(force, mass);
     acceleration.add(f);
   }
+
   void changeColor() {
     r = random (0, 75);
     g = random (0, 100);

@@ -15,7 +15,7 @@ class WaveSystem {
     fill(255);
     text(waveCollection.size(), 20, 60);
     while (iter.hasNext ()) {
-      iter.next().display();                                             // since we are only calling draw on the particle, we don't need to store in temporary object
+      iter.next().display();       
     }
   }
 

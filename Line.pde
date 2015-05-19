@@ -3,7 +3,7 @@ class Line {
   PVector endLoc;
   float lifespan;
   boolean isDead;
-  
+
   PVector velocity;
   PVector acceleration;
   float mass;
@@ -18,14 +18,14 @@ class Line {
 
   Line(PVector info) {
     startLoc = info;
-   endLoc =  new PVector(info.x, info.y);
-   lifespan = 120;
-   isDead = false;
-   if (startLoc.x == 0) {
-     velocity = new PVector (25, random(-10, 10));
-   } else {
-     velocity = new PVector (-25, random(-10, 10));
-   }
+    endLoc =  new PVector(info.x, info.y);
+    lifespan = 73;
+    isDead = false;
+    if (startLoc.x == 0) {
+      velocity = new PVector (30, random(-7, 7));
+    } else {
+      velocity = new PVector (-30, random(-7, 7));
+    }
   }
 
   void update() {
@@ -33,8 +33,8 @@ class Line {
     if (lifespan == 0) {
       isDead = true;
     } else {
-     lifespan = lifespan -1;
-    } 
+      lifespan = lifespan -1;
+    }
   }
 
   void display() {
